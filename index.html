@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avance IEO`s Cartagena</title>
+    <style>
+        /* Estilos de Fondo y Contenedor */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #e6e6e6; /* Fondo gris claro suave */
+            color: #333;
+        }
+        .dashboard-container {
+            max-width: 700px; /* Reducimos el ancho para el contenido de una sola columna */
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #1a1a1a;
+            text-align: center;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #666;
+            text-align: center;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+
+         h7 {
+            color: #666;
+            text-align: center;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        /* Estilos de Tarjetas (Cards) de Métricas */
+        .kpi-cards {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .card {
+            background-color: #f7f9fc;
+            padding: 20px;
+            border-left: 5px solid #0078d4; /* Color de acento azul */
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            width: 45%;
+        }
+        .card-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #0078d4;
+            margin-bottom: 5px;
+        }
+        .card-label {
+            font-size: 0.9em;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        /* Estilo para Gráfico de Barra de Avance (Progreso) */
+        .chart-panel {
+            background-color: #ffffff;
+            padding: 25px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+        }
+        .chart-panel h3 {
+            color: #333;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        .progress-bar-container {
+            height: 35px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: #009933; /* Verde vibrante */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1em;
+            transition: width 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <h1>Avance de Encuestas IEO`s Cartagena</h1>
+        <h2> IEO`s encuestadas (Total IEO`s: 107)</h2>
+        <h7> Caracterización de la Educación Musical Temprana IEO`s Públicas de Cartagena  de Indias</h7>
+
+        <script>
+            // Datos proporcionados
+            const totalIeos = 107;
+            const colegiosEncuestados = 14;
+            const colegiosConEncuestaCompleta = 6; // Se mantiene el dato aunque no se use en las gráficas restantes
+
+            // Cálculos
+            const porcentajeAvanceIeos = ((colegiosEncuestados / totalIeos) * 100).toFixed(1);
+            const colegiosFaltantesIeos = totalIeos - colegiosEncuestados;
+
+            // Inserción en el HTML
+            document.addEventListener('DOMContentLoaded', () => {
+                // Tarjetas KPI
+                document.getElementById('kpi-total').textContent = totalIeos;
+                document.getElementById('kpi-encuestados').textContent = colegiosEncuestados;
+                
+                // Gráfico 1: Avance de IEOs
+                const progressBarIeos = document.getElementById('progressIeos');
+                progressBarIeos.style.width = `${porcentajeAvanceIeos}%`;
+                progressBarIeos.textContent = `${porcentajeAvanceIeos}%`;
+                if (parseFloat(porcentajeAvanceIeos) < 10) {
+                    progressBarIeos.style.justifyContent = 'flex-start';
+                    progressBarIeos.style.paddingLeft = '5px';
+                    progressBarIeos.style.color = '#333';
+                    progressBarIeos.style.backgroundColor = '#ffb900'; 
+                }
+            });
+        </script>
+        
+        <div class="kpi-cards">
+            <div class="card">
+                <div class="card-value" id="kpi-total"></div>
+                <div class="card-label">Total IEO`s (Cartagena)</div>
+            </div>
+            
+            <div class="card" style="border-left-color: #009933;">
+                <div class="card-value" id="kpi-encuestados" style="color: #009933;"></div>
+                <div class="card-label">Progreso: de IEO`s</div>
+            </div>
+        </div>
+        
+        <div class="chart-panel">
+            <h3>Progreso: de IEO`s</h3>
+            <p style="font-size: 0.9em; color: #666;">Porcentaje de IEO`s contactados/encuestados respecto al numero total de 107 colegios.</p>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressIeos">0%</div>
+            </div>
+            <p style="text-align: right; font-size: 0.8em; color: #666; margin-top: 5px;">
+                14 IEO`s Encuestados 93 Pendientes
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>
