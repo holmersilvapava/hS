@@ -113,12 +113,10 @@
         <script>
             // Datos proporcionados
             const totalIeos = 107;
-            const colegiosEncuestados = 14;
-            const colegiosConEncuestaCompleta = 6; // Se mantiene el dato aunque no se use en las gráficas restantes
+            const colegiosEncuestados = 22;
 
             // Cálculos
-            const porcentajeAvanceIeos = ((colegiosEncuestados / totalIeos) * 100).toFixed(1);
-            const colegiosFaltantesIeos = totalIeos - colegiosEncuestados;
+            const porcentajeAvanceIeos = ((colegiosEncuestados / totalIeos) * 95.5).toFixed(1);
 
             // Inserción en el HTML
             document.addEventListener('DOMContentLoaded', () => {
@@ -158,7 +156,7 @@
                 <div class="progress-bar" id="progressIeos">0%</div>
             </div>
             <p style="text-align: right; font-size: 0.8em; color: #666; margin-top: 5px;">
-                14 IEO`s Encuestados 93 Pendientes
+                22 IEO`s Encuestados 85 Pendientes
             </p>
         </div>
 
